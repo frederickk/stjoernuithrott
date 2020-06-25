@@ -96,11 +96,13 @@ Engine_SCgazer : CroneEngine {
       detuned = Select.ar(sub, [VOsc.ar(wave, freq * detune), VOsc.ar(wave, (freq * 0.5) * detune)]);
 
       wave = ~vbuf[0].bufnum + wave;
+
       sig = VOsc.ar(wave, freq);
       sig = XFade2.ar(sig, detuned, mix);
       filter1 = MoogLadder.ar(sig, freq1 * lfo1.range(1, depth1), res1);
       sig = Decimator.ar(filter1, alias, redux);
       filter2 = MoogLadder.ar(sig, freq2 * lfo2.range(1, depth2), res2);
+
       sig = Splay.ar(filter2);
       sig = LeakDC.ar(sig);
       sig = XFade2.ar(sig, sig.clip, gain);
