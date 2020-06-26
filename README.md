@@ -48,32 +48,47 @@ The params for Stjörnuíþrótt are vast. As with the original Stargazer knob t
 
 Bolded params are controllable via Midi, in the future if enough interest support for Midi CC messages may be added.
 
-| Page    | Controller                    | Description                               | Values                     |
-| ------- | ----------------------------- | ----------------------------------------- | -------------------------- |
-| All     | E1                            | Change page                               |                            |
-| All     | K2                            | Sub-octave                                | On or Off                  |
-| **0**   | **E2** or **E4**<br />**Midi Note**     | **Pitch**                                 | **1 – 1320 Hz**  |
-| 0       | E3                            | Detune parameter of the second oscillator | 0 – 100% (relative to pitch) |
-| **1**   | **E2**<br />**Midi Velocity** | **Volume**                                | **0.0 - 1.0**              |
-| 1       | E3                            | Gain stage for CMOS distortion            | -1 is clean, 1 is dirty    |
-| 2       | E2                            | Waveform selector                         | 0 – 89                     |
-| 2       | E3                            | Mix for 2nd oscillator.                   | L(eft), C(enter), R(night) |
-| 3       | E2                            | Cutoff frequency for the 1st filter       | 1 – 1320 Hz                |
-| 3       | E3                            | Cutoff frequency for the 2nd filter       | 1 – 1320 Hz                |
-| 4       | E2                            | LFO of 1st filter                         | Tri(angle), Saw, Pulse     |
-| 4       | E3                            | Rate of 1st LFO                           | 1 – 1320 Hz                |
-| *5*     | *E2*                          | *LFO of 1st filter*                       | *Tri(angle), Saw, Pulse*   |
-| 5       | E3                            | Depth of 1st LFO                          | 1 none, 0 max              |
-| 6       | E2                            | LFO of 2nd filter                         | Tri(angle), Saw, Pulse     |
-| 6       | E3                            | Rate of 2nd LFO                           | 1 – 1320 Hz                |
-| *7*     | *E2*                          | *LFO of 2nd filter*                       | *Tri(angle), Saw, Pulse*   |
-| 7       | E3                            | Depth of 2nd LFO                          | 1 none, 0 max              |
-| 8       | E2                            | LFO of 3rd filter                         | Tri(angle), Saw, Pulse     |
-| 8       | E3                            | Rate of 3rd LFO                           | 1 – 1320 Hz                |
-| *9*     | *E2*                          | *LFO of 3rd filter*                       | *Tri(angle), Saw, Pulse*   |
-| 9       | E3                            | Depth of 3rd LFO                          | 1 none, 0 max              |
-| 10      | E2                            | Sample rate reduction                     | 100 – 48000 Hz             |
-| 10      | E3                            | Bit rate reduction                        | 0 – 24 bits                |
+| Page    | Controller                    | Description                               | Values                         |
+| ------- | ----------------------------- | ----------------------------------------- | ------------------------------ |
+| All     | E1                            | Change page                               |                                | 
+| All     | K2                            | Sub-octave                                | On or Off                      |
+| **0**   | **E2** or **E4**<br />**Midi Note**     | **Pitch**                       | **16.35 – 1046.5 Hz**          |
+| 0       | E3                            | Detune parameter of the second oscillator | 0 – 100% (relative to pitch)   |
+| **1**   | **E2**<br />**Midi Velocity** | **Volume**                                | **0.0 - 1.0**                  |
+| 1       | E3                            | Gain stage for CMOS distortion            | -1 is clean, 1 is dirty        |
+| 2       | E2                            | Waveform selector                         | 0 – 89                         |
+| 2       | E3                            | Mix for 2nd oscillator.                   | L(eft), C(enter), R(night)     |
+| 3       | E2                            | Cutoff frequency for the 1st filter       | 1 – 1320 Hz                    |
+| 3       | E3                            | Cutoff frequency for the 2nd filter       | 1 – 1320 Hz                    |
+| 4       | E2                            | LFO of 1st filter                         | Sine, Tri(angle), Saw, Pulse   |
+| 4       | E3                            | Rate of 1st LFO                           | 0.05 – 100.0                   |
+| *5*     | *E2*                          | *LFO of 1st filter*                       | *Sine, Tri(angle), Saw, Pulse* |
+| 5       | E3                            | Res of 1st LFO                            | 0.0 – 1.0                      |
+| *6*     | *E2*                          | *LFO of 1st filter*                       | *Sine, Tri(angle), Saw, Pulse* |
+| 6       | E3                            | Depth of 1st LFO                          | 1 none, 0 max                  | 
+| 7       | E2                            | LFO of 2nd filter                         | Sine, Tri(angle), Saw, Pulse   |
+| 7       | E3                            | Rate of 2nd LFO                           | 0.05 – 100.0                   |
+| *8*     | *E2*                          | *LFO of 2nd filter*                       | *Sine, Tri(angle), Saw, Pulse* |
+| 8       | E3                            | Res of 2nd LFO                            | 0.0 – 1.0                      |
+| *9*     | *E2*                          | *LFO of 2nd filter*                       | *Sine, Tri(angle), Saw, Pulse* |
+| 9       | E3                            | Depth of 2nd LFO                          | 1 none, 0 max                  | 
+| 10      | E2                            | LFO of 3rd filter                         | Sine, Tri(angle), Saw, Pulse   |
+| 10      | E3                            | Rate of 3rd LFO                           | 0.05 – 100.0                   |
+| *11*    | *E2*                          | *LFO of 3rd filter*                       | *Sine, Tri(angle), Saw, Pulse* |
+| 11      | E3                            | Depth of 3rd LFO                          | 1 none, 0 max                  |
+| 12      | E2                            | Sample rate reduction                     | 100 – 48000 Hz                 |
+| 12      | E3                            | Bit rate reduction                        | 0 – 24 bits                    |
+
+
+## Changelog
+
+- v1.1.0
+  - Fixed sub-octave and wave selector bugs
+  - Fixed order of UI elements
+  - Added LFO res 
+  - Added Midi [passthrough](https://github.com/nattog/passthrough)
+- v1.0.0 Initial release
+
 
 ---
 
