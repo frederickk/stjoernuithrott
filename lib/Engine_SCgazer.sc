@@ -69,7 +69,7 @@ Engine_SCgazer : CroneEngine {
         gain = (-1.0),
         wave = 0,
         sub = 0,
-        detune = 1,
+        osc2 = 1,
         mix = (0.0),
         freq1 = 880,
         freq2 = 880,
@@ -95,8 +95,8 @@ Engine_SCgazer : CroneEngine {
 
       // Detuned pitch of primary oscillator
       oscDetune = Select.ar(sub, [
-        VOsc.ar(wave, (freq * 0.5) * detune),
-        VOsc.ar(wave, (freq * 0.25) * detune)
+        VOsc.ar(wave, (freq * 0.5) * osc2),
+        VOsc.ar(wave, (freq * 0.25) * osc2)
       ]);
 
       // primary oscillator
@@ -134,8 +134,8 @@ Engine_SCgazer : CroneEngine {
       synth.set(\wave, msg[1]);
     });
 
-    this.addCommand("detune", "f", { arg msg;
-      synth.set(\detune, msg[1]);
+    this.addCommand("osc2", "f", { arg msg;
+      synth.set(\osc2, msg[1]);
     });
 
     this.addCommand("sub", "i", { arg msg;
