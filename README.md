@@ -7,7 +7,7 @@ Follow development progress at [https://llllllll.co/t/33889](https://llllllll.co
 
 ![Stjörnuíþrótt UI](.assets/stjoernuithrott.gif)
 
-https://llllllll.co/t/stjornuithrott-stargazer-inspired-drone-synth/33889
+https://llllllll.co/t/33889
 
 The hardware Stargazer has some impressive drone capabilities, which are emulated here:
 
@@ -39,7 +39,16 @@ $ cd dust/code
 $ git clone https://github.com/frederickk/stjoernuithrott.git
 ```
 
-After install `RESET` or `SLEEP` is required, because Stjörnuíþrótt installs a new engine.
+If you want to get the latest version run these commands or [download script as zip](https://github.com/frederickk/stjoernuithrott/archive/primary.zip):
+
+```bash
+$ cd dust/code/stjoernuithrott
+$ git fetch origin
+$ git checkout primary
+$ git merge origin/primary
+```
+
+**After install or update `RESET` or `SLEEP` is required, because Stjörnuíþrótt installs a new engine.**
 
 
 ## Params
