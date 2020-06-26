@@ -7,8 +7,6 @@ Follow development progress at [https://llllllll.co/t/33889](https://llllllll.co
 
 ![Stjörnuíþrótt UI](.assets/stjoernuithrott.gif)
 
-https://llllllll.co/t/33889
-
 The hardware Stargazer has some impressive drone capabilities, which are emulated here:
 
 - dual wavetable oscillator with 90 arbitrary waveforms
@@ -45,13 +43,13 @@ The params for Stjörnuíþrótt are vast. As with the original Stargazer knob t
 | ------- | ----------------------------- | ----------------------------------------- | ------------------------------ |
 | All     | E1                            | Change page                               |                                | 
 | All     | K2                            | Toogle sub-octave 2nd oscillator          | On or Off                      |
-| All     | K2                            | Sub-octave                                | On or Off                      |
+| All     | K3                            | Randomize parameters                      |                                |
 | **0**   | **E2** or **E4**<br />**Midi Note**     | **Pitch**                       | **16.35 – 1046.5 Hz**          |
 | 0       | E3                            | Detune parameter of the 2nd oscillator    | 0 – 100% (relative to pitch)   |
 | **1**   | **E2**<br />**Midi Velocity** | **Volume**                                | **0.0 - 1.0**                  |
 | 1       | E3                            | Gain stage for CMOS distortion            | -1 is clean, 1 is dirty        |
 | 2       | E2                            | Waveform selector                         | 0 – 89                         |
-| 2       | E3                            | Mix for 2nd oscillator.                   | L(eft), C(enter), R(night)     |
+| 2       | E3                            | Mix for 2nd oscillator.                   | Only osc. 1, both osc., Only osc. 2 |
 | 3       | E2                            | Cutoff frequency for the 1st filter       | 1 – 1320 Hz                    |
 | 3       | E3                            | Cutoff frequency for the 2nd filter       | 1 – 1320 Hz                    |
 | 4       | E2                            | LFO of 1st filter                         | Sine, Tri(angle), Saw, Pulse   |
@@ -76,7 +74,7 @@ The params for Stjörnuíþrótt are vast. As with the original Stargazer knob t
 
 ## Midi
 
-Bolded params above are controllable via the Midi commands listed. All other commands can be mapped to CC values within the Norns menu `paramaters > map > ...`
+Bolded params above are controllable via the Midi commands listed. All other commands can be mapped to CC values within the Norns menu `parameters > map > ...`
 
 ![Stjörnuíþrótt UI](.assets/stjoernuithrott_midi-map.gif)
 
@@ -107,6 +105,7 @@ $ git merge origin/primary
   - Fixed order of UI elements
   - Added LFO res 
   - Added Midi [passthrough](https://github.com/nattog/passthrough)
+  - Added parameter randomization
 - v1.0.0 Initial release
 
 
