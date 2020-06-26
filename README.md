@@ -30,39 +30,24 @@ Here’s brief (albeit limited exposé of all the sonic possibilities available)
 [Norns](https://monome.org/norns) or [Fates](https://llllllll.co/t/fates-a-diy-norns-dac-board-for-raspberry-pi/22999) or device. For Fates owners, the pitch value can be persistently controlled using the 4th encoder, for Norns owners it's `E2` the first page `P0`
 
 
-## Install
+## Install/Update
 
-[SSH](https://monome.org/docs/norns/maiden/#ssh) into your Norns/Fates, then enter the following commands in terminal.
-
-```bash
-$ cd dust/code
-$ git clone https://github.com/frederickk/stjoernuithrott.git
-```
-
-If you want to get the latest version run these commands or [download script as zip](https://github.com/frederickk/stjoernuithrott/archive/primary.zip):
-
-```bash
-$ cd dust/code/stjoernuithrott
-$ git fetch origin
-$ git checkout primary
-$ git merge origin/primary
-```
+Stjörnuíþrótt can be installed via [Maiden's](https://norns.local/maiden) project manager.
 
 **After install or update `RESET` or `SLEEP` is required, because Stjörnuíþrótt installs a new engine.**
 
 
 ## Params
 
-The params for Stjörnuíþrótt are vast. As with the original Stargazer knob twiddling and experimentation are encouraged. However, here's an overview of all the controls and their values (also listed within the params menu).
-
-Bolded params are controllable via Midi, in the future if enough interest support for Midi CC messages may be added.
+The params for Stjörnuíþrótt are vast. As with the original Stargazer knob twiddling and experimentation are encouraged. However, here's a table of all the controls and their values (also listed within the params menu).
 
 | Page    | Controller                    | Description                               | Values                         |
 | ------- | ----------------------------- | ----------------------------------------- | ------------------------------ |
 | All     | E1                            | Change page                               |                                | 
+| All     | K2                            | Toogle sub-octave 2nd oscillator          | On or Off                      |
 | All     | K2                            | Sub-octave                                | On or Off                      |
 | **0**   | **E2** or **E4**<br />**Midi Note**     | **Pitch**                       | **16.35 – 1046.5 Hz**          |
-| 0       | E3                            | Detune parameter of the second oscillator | 0 – 100% (relative to pitch)   |
+| 0       | E3                            | Detune parameter of the 2nd oscillator    | 0 – 100% (relative to pitch)   |
 | **1**   | **E2**<br />**Midi Velocity** | **Volume**                                | **0.0 - 1.0**                  |
 | 1       | E3                            | Gain stage for CMOS distortion            | -1 is clean, 1 is dirty        |
 | 2       | E2                            | Waveform selector                         | 0 – 89                         |
@@ -87,6 +72,32 @@ Bolded params are controllable via Midi, in the future if enough interest suppor
 | 11      | E3                            | Depth of 3rd LFO                          | 1 none, 0 max                  |
 | 12      | E2                            | Sample rate reduction                     | 100 – 48000 Hz                 |
 | 12      | E3                            | Bit rate reduction                        | 0 – 24 bits                    |
+
+
+## Midi
+
+Bolded params above are controllable via the Midi commands listed. All other commands can be mapped to CC values within the Norns menu `paramaters > map > ...`
+
+![Stjörnuíþrótt UI](.assets/stjoernuithrott_midi-map.gif)
+
+
+## Development
+
+[SSH](https://monome.org/docs/norns/maiden/#ssh) into your Norns/Fates, then enter the following commands in terminal.
+
+```bash
+$ cd dust/code
+$ git clone https://github.com/frederickk/stjoernuithrott.git
+```
+
+If you want to get the latest version run these commands:
+
+```bash
+$ cd dust/code/stjoernuithrott
+$ git fetch origin
+$ git checkout primary
+$ git merge origin/primary
+```
 
 
 ## Changelog

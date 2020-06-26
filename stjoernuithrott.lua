@@ -12,6 +12,7 @@
 -- llllllll.co/t/33889
 --
 -- K2    Toggle sub-octave
+
 --
 -- E1    Cycle through params
 -- E4    Pitch (hz) [Fates only]
@@ -62,9 +63,9 @@ function add_params()
   params:add_control("wave", "Waveform", controlspec.new(0, 89, "lin", 1, 0, ""))
   params:set_action("wave", function(x) engine.wave(x) end)
 
-  -- Detune parameter of the second oscillator
-  params:add_control("detune", "Detune second osc.", controlspec.new(-5, 5, "lin", .1, 1, ""))
-  params:set_action("detune", function(x) engine.detune(x) end)
+  -- Detune parameter of the 2nd oscillator
+  params:add_control("osc2", "Detune second osc.", controlspec.new(-5, 5, "lin", .1, 1, ""))
+  params:set_action("osc2", function(x) engine.osc2(x) end)
 
   -- Detunes second oscillator 1 octave lower, 0 for using detune as it is
   params:add_control("sub", "Suboctave 2nd osc.", controlspec.new(0, 1, "lin", 1, 0, ""))
@@ -157,6 +158,37 @@ function add_params()
 end
 
 
+-- Randomize parameter values
+function randomize_params() 
+  params:set("freq", random(16.35, 1046.5))
+  params:set("osc2", random(-5, 5))
+  params:set("gain", random(-1, 1))
+  params:set("sub", math.floor(random(0, 2)))
+  -- params:set("wave", random(0, 89)) -- uncomment to randomize waveforms
+  -- params:set("mix", random(-1, 1x)) -- uncomment to randomize mix
+
+  params:set("freq1", random(80, 5000))
+  params:set("freq2", random(80, 5000))
+
+  params:set("lfo1type1", math.floor(random(0, 4)))
+  params:set("rate1", random(0.05, 100.0))
+  params:set("res1", random(0, 1))
+  params:set("depth1", random(0, 1))
+
+  params:set("lfo1type2", math.floor(random(0, 4)))
+  params:set("rate2", random(0.05, 100.0))
+  params:set("res2", random(0, 1))
+  params:set("depth2", random(0, 1))
+
+  params:set("lfo1type3", math.floor(random(0, 4)))
+  params:set("rate3", random(0.05, 100.0))
+  params:set("depth3", random(0, 1))
+
+  params:set("alias", random(100, 44100))
+  params:set("redux", random(0, 24))
+end
+  
+
 -- Initialize
 function init()
   print("Stjörnuíþrótt " .. VERSION)
@@ -214,7 +246,7 @@ function enc(n, delta)
 
   if params:get("page") == 0 then
     if n == 3 then
-      params:delta("detune", delta)
+      params:delta("osc2", delta)
     end
 
   elseif params:get("page") == 1 then
@@ -313,6 +345,9 @@ function key(n, state)
     else
       params:set("sub", 1)
     end
+
+  elseif n == 3 and state == 1 then
+    randomize_params()   
   end
 
   redraw()
@@ -346,8 +381,8 @@ function redraw()
 
   screen.move(VIEWPORT.width, 10)
   highlight(ON, OFF, {page})
-  screen.text_right(params:get("freq") * params:get("detune"))
-  detune_note = note_octave(music_util.freq_to_note_num(params:get("freq") * params:get("detune")))
+  screen.text_right(params:get("freq") * params:get("osc2"))
+  detune_note = note_octave(music_util.freq_to_note_num(params:get("freq") * params:get("osc2")))
   -- screen.text_center(math.floor(params:get("detune") * 100) .. "%")
   screen.move(VIEWPORT.width, 20)
   screen.text_right(detune_note)
@@ -520,3 +555,15 @@ function led(x, y, state)
     screen.stroke()
   end
 end
+
+
+-- Generates random number between given min and max
+-- min: minmum range
+-- max: maximum range
+-- returns random number as float
+function random(min, max)
+  return (min + math.random() * (max - min));
+end
+
+
+
