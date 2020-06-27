@@ -8,11 +8,11 @@
 --
 --
 -- Stjoernuithrott
--- 1.1.0
+-- 1.1.1
 -- llllllll.co/t/33889
 --
 -- K2    Toggle sub-octave
-
+-- K3    Randomize parmes
 --
 -- E1    Cycle through params
 -- E4    Pitch (hz) [Fates only]
@@ -161,7 +161,7 @@ end
 -- Randomize parameter values
 function randomize_params() 
   params:set("freq", random(16.35, 1046.5))
-  params:set("osc2", random(-5, 5))
+  -- params:set("osc2", random(-5, 5)) -- uncomment to randomize waveforms
   params:set("gain", random(-1, 1))
   params:set("sub", math.floor(random(0, 2)))
   -- params:set("wave", random(0, 89)) -- uncomment to randomize waveforms
@@ -192,7 +192,6 @@ end
 -- Initialize
 function init()
   print("Stjörnuíþrótt " .. VERSION)
-
   init_midi()
   add_params()
   screen.aa(0)
@@ -200,22 +199,25 @@ function init()
 end
 
 
+-- Midi event, fires when Midi data receieved
+function midi_device_event(data)
+  local msg = midi.to_msg(data)
+
+  if msg.type == "note_on" then
+    hz = music_util.note_num_to_freq(msg.note)
+
+    params:set("freq", hz)
+    params:set("amp", (msg.vel / 127) * 100)
+  end
+
+  redraw()
+end
+
+
 -- Initialize Midi
 function init_midi()
   passthrough.init()
-  passthrough.midi_device.event = function(data)
-    local d = midi.to_msg(data)
-    
-    if d.type == "note_on" then
-      hz = music_util.note_num_to_freq(d.note)
-
-      params:set("freq", hz)
-      params:set("amp", (d.vel / 127) * 100)
-    end
-
-    passthrough.device_event(data)
-    redraw()
-  end
+  passthrough.user_device_event = midi_device_event
 end
 
 
